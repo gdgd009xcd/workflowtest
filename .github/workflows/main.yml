@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
-          zip --junk-paths TestTest${RELEASE_VERSION}.zap README.md
+          zip --junk-paths TestTest${{ steps.vars.outputs.tag }}.zap README.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
