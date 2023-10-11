@@ -30,7 +30,8 @@ jobs:
         id: zapFileName
         run: |
           echo "filename=`ls *.zap`" >> $GITHUB_OUTPUT
-          echo "filename["${{ steps.zapFileName.outputs.filename }}"]"
+      - name: echo zap file name
+        run: echo "filename[${{ steps.zapFileName.outputs.filename }}]"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
