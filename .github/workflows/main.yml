@@ -6,6 +6,9 @@ on:
 
 name: Upload Release Asset
 
+env:
+  WSPDATA: 'white spaces.'
+
 jobs:
   build:
     name: Upload Release Asset
@@ -21,6 +24,7 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
+          echo "[${{ env.WSPDATA }}]"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
