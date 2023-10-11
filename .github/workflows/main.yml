@@ -26,8 +26,9 @@ jobs:
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
           zip --junk-paths TestTest${{ steps.vars.outputs.tag }}.zap README.md
+      - name: get zap file name
         id: zapFileName
-          run:|
+        run: |
           echo "filename=`ls *.zap`" >> $GITHUB_OUTPUT
           echo "filename["${{ steps.zapFileName.outputs.filename }}"]"
       - name: Create Release
