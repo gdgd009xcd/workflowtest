@@ -18,11 +18,6 @@ jobs:
       - name: Set output
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-      - name: get file..
-        run: |
-          echo "PFILE<<EOF" >> $GITHUB_ENV
-          echo "`w`" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV 
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
@@ -30,7 +25,6 @@ jobs:
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
           echo "[${{ env.WSPDATA }}]"
-          echo "[${{ env.PFILE }}]"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
