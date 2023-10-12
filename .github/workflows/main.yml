@@ -21,7 +21,7 @@ jobs:
       - name: get file..
         run: |
           echo "PFILE<<EOF" >> $GITHUB_ENV
-          echo "`cat /etc/passwd`" >> $GITHUB_ENV
+          echo "`w`" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV 
       - name: Check output
         env:
