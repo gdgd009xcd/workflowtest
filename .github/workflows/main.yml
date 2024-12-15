@@ -8,6 +8,7 @@ name: Upload Release Asset
 
 env:
   WSPDATA: 'white spaces.'
+  JAVA_ENV_NAME: 'JAVA_HOME_11_X64'
 
 jobs:
   build:
@@ -25,17 +26,23 @@ jobs:
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
           echo "[${{ env.WSPDATA }}]"
+          echo "java version env[$${{ env.JAVA_ENV_NAME }}]"
+          echo "JAVA_HOME=$${{ env.JAVA_ENV_NAME }}" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
           zip --junk-paths TestTest${{ steps.vars.outputs.tag }}.zap README.md
+          echo "$JAVA_HOME/bin" >> $GITHUB_PATH
       - name: get zap file name
         id: zapFileName
         run: |
           echo "filename=`ls *.zap`" >> $GITHUB_OUTPUT
       - name: echo zap file name
-        run: echo "filename[${{ steps.zapFileName.outputs.filename }}]"
+        run: |
+          echo "filename[${{ steps.zapFileName.outputs.filename }}]"
+          java --version
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
