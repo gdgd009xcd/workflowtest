@@ -8,7 +8,7 @@ name: Upload Release Asset
 
 env:
   WSPDATA: 'white spaces.'
-  JAVA_ENV_NAME: 'JAVA_HOME_11_X64'
+  JAVA_ENV_NAME: 'JAVA_HOME_17_X64'
 
 jobs:
   build:
